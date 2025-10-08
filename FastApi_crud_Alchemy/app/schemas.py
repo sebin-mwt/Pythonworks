@@ -16,7 +16,7 @@ class UserOut(BaseModel):
 
     username : str
 
-    class Config:
+    class Config:   
 
         from_attributes=True
 

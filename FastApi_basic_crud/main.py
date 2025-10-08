@@ -28,19 +28,18 @@ def userData(data : Student,response:Response):
     # response.status_code=status.HTTP_201_CREATED
     return {"message" : my_data}
 
-
 # To get the names of the students
 @app.get("/user")
 def getuser():  
 
     names=[v for dic in my_data for k,v in dic.items() if k=="name"]
 
-    return {f"availavle students are {names} "}
+    return {f"availavle students are {names} "} 
 
 
 # To get the details of the particular student
 @app.get("/user/{id}")
-def getuserbyid(id,response:Response):
+def getuserbyid(id:int,response:Response):
     user_data=None
     for dic in my_data:
         if dic["id"]==int(id):
@@ -77,8 +76,6 @@ def deleteuser(id: int,response:Response):
     print(my_data)
     my_data.pop(index)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
-
-
 
 @app.put("/user/update/{id}")
 def updateUser(id:int , student:Student):

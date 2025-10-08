@@ -29,7 +29,6 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
 
     return {"access_token": access_token, "token_type": "bearer"} 
 
-
 @app.post("/students", response_model=schemas.StudentOut)
 def create_student(student: schemas.StudentCreate,db: Session = Depends(get_db),current_user: models.User = Depends(auth.get_current_user)) :
     # print(current_user)
@@ -41,7 +40,6 @@ def get_all_students(db: Session = Depends(get_db),current_user: models.User = D
     age: int = None,standard: str = None,place: str = None,is_boy: bool = None,skip: int = 0,limit: int = 10):
 
     return crud.get_students(db=db,user_id=current_user.id,age=age,standard=standard,place=place,is_boy=is_boy,skip=skip,limit=limit)
-
 
 @app.get("/student/search")
 def search_student(query:str , db:Session= Depends(get_db),current_user:models.User=Depends(auth.get_current_user)):

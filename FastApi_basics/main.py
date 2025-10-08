@@ -13,7 +13,7 @@ def user_name():
     return {"message": "hei this is sebin"}
 
 @app.post('/username')
-def username(data: dict = Body(...)):
+def username(data: dict = Body(...)):   
 
     print(data)
     if not data:

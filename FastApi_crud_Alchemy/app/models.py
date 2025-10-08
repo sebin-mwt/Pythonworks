@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from .database import Base
 
 class User(Base):
+    
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -17,7 +18,7 @@ class Student(Base):
     __tablename__ = "studentss"  
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
+    name = Column(String, nullable=False)   
     age = Column(Integer, nullable=False)
     standard = Column(String, nullable=False)
     place = Column(String, nullable=False)

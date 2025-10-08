@@ -13,7 +13,6 @@ class Student(BaseModel):
 
     is_student : bool =True
 
-
 try:
     # Connect to your postgres DB
     conn = psycopg2.connect(host="localhost",database="fastapi",user="postgres",password="Password@123", cursor_factory=RealDictCursor)
@@ -24,12 +23,10 @@ try:
     print("Database connection successfull !!!")
 
 except Exception as e:
+
     print("Error Database connection Failed...", e)
 
-
-
 my_data=[{"name":"appu","school":"hkps","age":12,"is_student":True ,"id":1}]
-
 
  # To add a student to student table
 @app.post("/user", status_code=status.HTTP_201_CREATED)  
@@ -38,13 +35,13 @@ def userData(data : Student):
     cur.execute("""INSERT INTO student (name,age,is_student) VALUES (%s , %s,%s) RETURNING * """,
                 (data.name, data.age,data.is_student))
 
-    new_student=cur.fetchone()
-    conn.commit()
+    new_student=cur.fetchone() 
+    conn.commit() 
 
-    return {"Data added Successfully" : new_student}
+    return {"Data added Successfully" : new_student} 
    
 
-# To get the names of the students details from student table
+# To get the names  of the students details from student table
 @app.get("/user")
 def getuser():  
 
@@ -53,9 +50,8 @@ def getuser():
     # print(students)
     return  students
 
-
 # To get the details of the particular student
-@app.get("/user/{id}")
+@app.get("/user/{id}") 
 def getuserbyid(id :int,response:Response):
     
     cur.execute(""" SELECT * from student WHERE id= (%s)  """,(str(id)))
@@ -91,8 +87,6 @@ def deleteuser(id: int,response:Response):
     conn.commit()
     
     return Response(status_code=status.HTTP_204_NO_CONTENT)
-
-
 
 @app.put("/user/update/{id}")
 def updateUser(id:int , student:Student):

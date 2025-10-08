@@ -65,7 +65,7 @@ def get_student_by_id(db: Session, student_id: int):
 def get_students(db: Session,user_id : int,age: int = None,standard: str = None,place: str = None,is_boy: bool = None,skip: int = 0,limit: int = 10):
    
     query = db.query(models.Student).filter(models.Student.user_id==user_id)
-    if age is not None:
+    if age is not None: 
         query = query.filter(models.Student.age == age)
     if standard is not None:
         query = query.filter(models.Student.standard == standard)
@@ -101,8 +101,8 @@ def delete_student(db: Session, student_id: int,user_id:int):
     if student.user_id !=user_id:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail= "You are not authorised to do the task")
     
-    db.delete(student)
-    db.commit()
+    db.delete(student)  
+    db.commit() 
     return student
 
 # search_student(db,query,user_id=current_user.id)
